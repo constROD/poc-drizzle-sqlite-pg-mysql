@@ -1,0 +1,17 @@
+node_modules/
+dist/
+
+databases/
+**/*.db
+
+.env
+.env.*
+.env-*
+
+!**.example
+
+*-lock.json
+*.lock
+
+.eslintrc.js
+.prettierrc.js
