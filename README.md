@@ -30,14 +30,23 @@ cd poc-drizzle-sqlite-pg-mysql
 pnpm install
 ```
 
+4. Create `.env` file and use `.env.example` as a template
+   
+5. Start development server
+
+```
+pnpm dev
+```
+
 
 ## Project Structure
 
 - `src/`: Source code directory
-- `db/schema.ts`: Schema definitions
-- `db/client.ts`: Database client configurations
+- `src/db/{db_type}/schema.ts`: Schema definitions
+- `src/db/client.ts`: Database client configurations
 - `docker-compose.yaml`: Docker-compose file for PostgreSQL and MySQL
-- `drizzle.*.config.ts`: Drizzle configuration files for SQLite, PostgreSQL, and MySQL
+- `drizzle.{db_type}.config.ts`: Drizzle configuration files for SQLite, PostgreSQL, and MySQL
+- `setup/`: Setup scripts and etc.
 
 ## Database Scripts
 
