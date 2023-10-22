@@ -14,7 +14,7 @@ fi
 
 # Check if the database file already exists
 if [ -f "$db_path" ]; then
-  echo "[INFO]: Database ${DB_NAME}.db already exists. Doing nothing."
+  echo "[INFO]: SQLite database ${DB_NAME}.db already exists. Doing nothing."
 else
   echo "[INFO]: Creating SQLite database ${DB_NAME} in ${db_path}"
   touch $db_path
