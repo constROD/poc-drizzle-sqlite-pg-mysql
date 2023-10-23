@@ -15,20 +15,23 @@ async function deleteAllRecords() {
   await mysqlDbClient.execute(sql`TRUNCATE TABLE ${mysqlUsersTable}`);
 }
 
+async function insertAndShowFakeUsers(count: number) {
+  await sqliteDbClient.insert(sqliteUsersTable).values(generateFakeUsers(count));
+  await pgDbClient.insert(pgUsersTable).values(generateFakeUsers(count));
+  await mysqlDbClient.insert(mysqlUsersTable).values(generateFakeUsers(count));
+
+  const sqliteResult = await sqliteDbClient.select().from(sqliteUsersTable);
+  const pgResult = await pgDbClient.select().from(pgUsersTable);
+  const mysqlResult = await mysqlDbClient.select().from(mysqlUsersTable);
+
+  console.log('sqliteResult: ', sqliteResult);
+  console.log('pgResult: ', pgResult);
+  console.log('mysqlResult: ', mysqlResult);
+}
+
 async function run() {
   await deleteAllRecords();
-
-  await sqliteDbClient.insert(sqliteUsersTable).values(generateFakeUsers(5));
-  const sqliteResult = await sqliteDbClient.select().from(sqliteUsersTable);
-  console.log('sqliteResult: ', sqliteResult);
-
-  await pgDbClient.insert(pgUsersTable).values(generateFakeUsers(5));
-  const pgResult = await pgDbClient.select().from(pgUsersTable);
-  console.log('pgResult: ', pgResult);
-
-  await mysqlDbClient.insert(mysqlUsersTable).values(generateFakeUsers(5));
-  const mysqlResult = await mysqlDbClient.select().from(mysqlUsersTable);
-  console.log('mysqlResult: ', mysqlResult);
+  await insertAndShowFakeUsers(5);
 }
 
 run();
