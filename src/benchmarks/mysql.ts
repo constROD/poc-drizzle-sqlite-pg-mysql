@@ -25,7 +25,7 @@ async function seedDatabase() {
 }
 
 async function runBenchmark() {
-  await seedDatabase();
+  // await seedDatabase();
 
   console.log('Benchmarking...');
   const start = performance.now();
@@ -33,8 +33,9 @@ async function runBenchmark() {
     .select({ count: sql<number>`count(*)` })
     .from(MysqlSchema.users);
   const end = performance.now();
+  console.log('records: ', records);
   console.log(`Total records of ${records[0]?.count.toLocaleString('en-US')}`);
-  console.log(`Execution Time: ${start - end} ms`);
+  console.log(`Execution Time: ${end - start} ms`);
 }
 
 runBenchmark();
