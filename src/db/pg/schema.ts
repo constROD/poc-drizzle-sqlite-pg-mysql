@@ -1,9 +1,7 @@
 import { sql } from 'drizzle-orm';
 import { index, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
 
-export * as PgSchema from './schema';
-
-export const users = pgTable(
+export const usersTable = pgTable(
   'users',
   {
     id: serial('serial').primaryKey().notNull(),
@@ -20,5 +18,5 @@ export const users = pgTable(
   })
 );
 
-export type User = typeof users.$inferSelect;
-export type CreateUser = typeof users.$inferInsert;
+export type User = typeof usersTable.$inferSelect;
+export type CreateUser = typeof usersTable.$inferInsert;

@@ -3,7 +3,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2022,
-        project: true,
+    project: true,
   },
   extends: [
     'plugin:@typescript-eslint/recommended-type-checked',
@@ -17,19 +17,14 @@ module.exports = {
     // '@typescript-eslint/array-type': 'off',
     // '@typescript-eslint/consistent-type-definitions':
     //   'off',
-
-    '@typescript-eslint/consistent-type-imports':
-      [
-        'warn',
-        {
-          prefer: 'type-imports',
-          fixStyle: 'inline-type-imports',
-        },
-      ],
-    '@typescript-eslint/no-unused-vars': [
+    '@typescript-eslint/consistent-type-imports': [
       'warn',
-      { argsIgnorePattern: '^_' },
+      {
+        prefer: 'type-imports',
+        fixStyle: 'inline-type-imports',
+      },
     ],
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-misused-promises': [
       2,
       {

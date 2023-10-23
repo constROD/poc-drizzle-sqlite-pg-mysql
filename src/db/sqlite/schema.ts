@@ -1,9 +1,7 @@
 import { sql } from 'drizzle-orm';
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
-export * as SqliteSchema from './schema';
-
-export const users = sqliteTable(
+export const usersTable = sqliteTable(
   'users',
   {
     id: integer('id').primaryKey().notNull(),
@@ -20,5 +18,5 @@ export const users = sqliteTable(
   })
 );
 
-export type User = typeof users.$inferSelect;
-export type CreateUser = typeof users.$inferInsert;
+export type User = typeof usersTable.$inferSelect;
+export type CreateUser = typeof usersTable.$inferInsert;

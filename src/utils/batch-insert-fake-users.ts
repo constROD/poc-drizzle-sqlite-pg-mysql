@@ -1,7 +1,7 @@
 import { mysqlClient, pgClient, sqliteClient } from '../db/client';
-import { MysqlSchema } from '../db/mysql/schema';
-import { PgSchema } from '../db/pg/schema';
-import { SqliteSchema } from '../db/sqlite/schema';
+import { usersTable as mysqlUsersTable } from '../db/mysql/schema';
+import { usersTable as pgUsersTable } from '../db/pg/schema';
+import { usersTable as sqliteUsersTable } from '../db/sqlite/schema';
 import { generateFakeUsers } from './generate-fake-users';
 
 export async function batchInsertFakeUsers({
@@ -19,15 +19,15 @@ export async function batchInsertFakeUsers({
     const users = generateFakeUsers(batchSize);
 
     if (dbType === 'mysql') {
-      await mysqlClient().insert(MysqlSchema.users).values(users);
+      await mysqlClient().insert(mysqlUsersTable).values(users);
     }
 
     if (dbType === 'pg') {
-      await pgClient().insert(PgSchema.users).values(users);
+      await pgClient().insert(pgUsersTable).values(users);
     }
 
     if (dbType === 'sqlite') {
-      await sqliteClient().insert(SqliteSchema.users).values(users);
+      await sqliteClient().insert(sqliteUsersTable).values(users);
     }
 
     console.log('Batch Inserted: ', i + 1, ' of ', totalBatches, ' batches');

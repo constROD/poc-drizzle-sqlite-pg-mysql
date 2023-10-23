@@ -1,13 +1,13 @@
 import { sql } from 'drizzle-orm';
 import { mysqlClient } from '../db/client';
-import { MysqlSchema } from '../db/mysql/schema';
+import { usersTable } from '../db/mysql/schema';
 import { batchInsertFakeUsers } from '../utils/batch-insert-fake-users';
 
 const mysqlDbClient = mysqlClient();
 
 async function seedDatabase() {
   console.log('Cleaning up...');
-  await mysqlDbClient.execute(sql`TRUNCATE TABLE ${MysqlSchema.users}`);
+  await mysqlDbClient.execute(sql`TRUNCATE TABLE ${usersTable}`);
 
   const count = 1_000_000;
   const batchSize = 20_000;
@@ -29,9 +29,7 @@ async function runBenchmark() {
 
   console.log('Benchmarking...');
   const start = performance.now();
-  const records = await mysqlDbClient
-    .select({ count: sql<number>`count(*)` })
-    .from(MysqlSchema.users);
+  const records = await mysqlDbClient.select({ count: sql<number>`count(*)` }).from(usersTable);
   const end = performance.now();
   console.log('records: ', records);
   console.log(`Total records of ${records[0]?.count.toLocaleString('en-US')}`);

@@ -1,9 +1,7 @@
 import { sql } from 'drizzle-orm';
 import { datetime, index, int, mysqlTable, varchar } from 'drizzle-orm/mysql-core';
 
-export * as MysqlSchema from './schema';
-
-export const users = mysqlTable(
+export const usersTable = mysqlTable(
   'users',
   {
     id: int('id').primaryKey().autoincrement().notNull(),
@@ -20,5 +18,5 @@ export const users = mysqlTable(
   })
 );
 
-export type User = typeof users.$inferSelect;
-export type CreateUser = typeof users.$inferInsert;
+export type User = typeof usersTable.$inferSelect;
+export type CreateUser = typeof usersTable.$inferInsert;
