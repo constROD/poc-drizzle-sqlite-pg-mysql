@@ -1,50 +1,49 @@
 {
-  "id": "00000000-0000-0000-0000-000000000000",
-  "prevId": "",
   "version": "5",
   "dialect": "sqlite",
+  "id": "63b7f39c-2a31-458c-be83-b4a450fa5cf8",
+  "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "users": {
       "name": "users",
       "columns": {
         "id": {
-          "autoincrement": false,
           "name": "id",
           "type": "integer",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "first_name": {
-          "autoincrement": false,
           "name": "first_name",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "last_name": {
-          "autoincrement": false,
           "name": "last_name",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "email": {
-          "autoincrement": false,
           "name": "email",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "created_at": {
-          "default": "'sql`(CURRENT_TIMESTAMP)`'",
-          "autoincrement": false,
           "name": "created_at",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(CURRENT_TIMESTAMP)"
         }
       },
-      "compositePrimaryKeys": {},
       "indexes": {
         "first_name_idx": {
           "name": "first_name_idx",
@@ -76,6 +75,7 @@
         }
       },
       "foreignKeys": {},
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     }
   },

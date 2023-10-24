@@ -42,6 +42,7 @@ pnpm dev
 ## Project Structure
 
 - `src/`: Source code directory
+- `src/env.ts`: Environment variables
 - `src/db/{db_type}/schema.ts`: Schema definitions
 - `src/db/client.ts`: Database client configurations
 - `docker-compose.yaml`: Docker-compose file for PostgreSQL and MySQL

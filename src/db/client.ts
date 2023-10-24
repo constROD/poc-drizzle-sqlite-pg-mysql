@@ -4,8 +4,8 @@ import { drizzle as mysqlDrizzle } from 'drizzle-orm/mysql2';
 import { drizzle as pgDrizzle } from 'drizzle-orm/node-postgres';
 import mysql from 'mysql2/promise';
 import { Pool } from 'pg';
-import { envConfig } from '~/env.config';
-import { generateDbString } from '../utils/generate-db-string';
+import { generateDbString } from '~/db/utils/generate-db-string';
+import { envConfig } from '~/env';
 
 export const DEFAULT_DB_STRING = {
   sqlite: generateDbString({ dbType: 'sqlite', options: { database: envConfig.DB_NAME } }),
@@ -47,3 +47,9 @@ export function mysqlClient(dbString: string = DEFAULT_DB_STRING.mysql) {
   const connection = mysql.createPool(dbString);
   return mysqlDrizzle(connection);
 }
+
+export type SqliteClient = ReturnType<typeof sqliteClient>;
+export type PgClient = ReturnType<typeof pgClient>;
+export type MysqlClient = ReturnType<typeof mysqlClient>;
+
+export type DatabaseClient = SqliteClient | PgClient | MysqlClient;

@@ -1,13 +1,13 @@
 import { sql } from 'drizzle-orm';
-import { mysqlClient } from '~/db/client';
-import { usersTable } from '~/db/mysql/schema';
+import { pgClient } from '~/db/client';
+import { usersTable } from '~/db/pg/schema';
 
-const mysqlDbClient = mysqlClient();
+const pgDbClient = pgClient();
 
 async function runBenchmark() {
-  console.log('MySQL Benchmarking...');
+  console.log('PG Benchmarking...');
   const start = performance.now();
-  const records = await mysqlDbClient
+  const records = await pgDbClient
     .select({ count: sql`count(*)`.mapWith(Number) })
     .from(usersTable);
   const end = performance.now();

@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm';
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const usersTable = sqliteTable(
@@ -7,7 +8,7 @@ export const usersTable = sqliteTable(
     firstName: text('first_name'),
     lastName: text('last_name'),
     email: text('email'),
-    createdAt: text('created_at').default('sql`(CURRENT_TIMESTAMP)`'),
+    createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
   },
   table => {
     return {

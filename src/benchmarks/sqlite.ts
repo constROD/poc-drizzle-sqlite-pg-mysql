@@ -1,13 +1,13 @@
 import { sql } from 'drizzle-orm';
-import { mysqlClient } from '~/db/client';
-import { usersTable } from '~/db/mysql/schema';
+import { sqliteClient } from '~/db/client';
+import { usersTable } from '~/db/sqlite/schema';
 
-const mysqlDbClient = mysqlClient();
+const sqliteDbClient = sqliteClient();
 
 async function runBenchmark() {
-  console.log('MySQL Benchmarking...');
+  console.log('SQLite Benchmarking...');
   const start = performance.now();
-  const records = await mysqlDbClient
+  const records = await sqliteDbClient
     .select({ count: sql`count(*)`.mapWith(Number) })
     .from(usersTable);
   const end = performance.now();

@@ -1,6 +1,6 @@
 import type { Config } from 'drizzle-kit';
-import { envConfig } from './env.config';
-import { generateDbString } from './src/utils/generate-db-string';
+import { generateDbString } from '~/db/utils/generate-db-string';
+import { envConfig } from '~/env';
 
 export default {
   schema: './src/db/pg/schema.ts',

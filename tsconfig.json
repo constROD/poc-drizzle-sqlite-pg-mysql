@@ -40,7 +40,7 @@
     /* My preference */
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./*"]
+      "~/*": ["./src/*"]
     }
   },
   "include": ["**/*.ts", "./.eslintrc.js"],
