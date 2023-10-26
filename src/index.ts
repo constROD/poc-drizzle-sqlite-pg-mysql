@@ -24,4 +24,4 @@ async function run() {
   console.log(`MySQL | Total records of ${mysqlRecords[0]?.count.toLocaleString('en-US')}`);
 }
 
-run();
+void run();

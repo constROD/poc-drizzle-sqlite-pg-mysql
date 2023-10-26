@@ -15,4 +15,4 @@ async function runBenchmark() {
   console.log(`Execution Time: ${end - start} ms`);
 }
 
-runBenchmark();
+void runBenchmark();

@@ -48,19 +48,19 @@ async function seedFakeUsers({
   console.log(`Execution Time: ${end - start} ms`);
 }
 
-seedFakeUsers({
+void seedFakeUsers({
   dbType: 'sqlite',
   count: 1_000_000,
   batchSize: 10_000,
 });
 
-// seedFakeUsers({
+// void seedFakeUsers({
 //   dbType: 'pg',
 //   count: 1_000_000,
 //   batchSize: 10_000,
 // });
 
-// seedFakeUsers({
+// void seedFakeUsers({
 //   dbType: 'mysql',
 //   count: 1_000_000,
 //   batchSize: 10_000,

@@ -31,7 +31,7 @@ export function generateDbString<TDbType extends 'pg' | 'mysql' | 'sqlite'>({
   if (dbType === 'pg') {
     const { user, password, host, port, database, schema } = options as PgOption;
     return `postgresql://${user}:${password}@${host}:${port}/${database}${
-      schema || `?schema=${schema}`
+      schema ?? `?schema=${schema}`
     }`;
   }
 
