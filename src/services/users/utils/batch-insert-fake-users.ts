@@ -4,11 +4,11 @@ import { usersTable as pgUsersTable } from '~/db/pg/schema';
 import { usersTable as sqliteUsersTable } from '~/db/sqlite/schema';
 import { generateFakeUsers } from './generate-fake-users';
 
-export interface BatchInsertFakeUsersOptions {
+export type BatchInsertFakeUsersOptions = {
   count: number;
   batchSize: number;
   dbType: 'pg' | 'mysql' | 'sqlite';
-}
+};
 
 export async function batchInsertFakeUsers({
   dbType,
