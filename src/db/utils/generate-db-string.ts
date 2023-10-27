@@ -21,27 +21,26 @@ type SqliteOption = {
 
 export type GenerateDbString<TDbType extends 'pg' | 'mysql' | 'sqlite'> = {
   dbType: TDbType;
-  options: TDbType extends 'pg' ? PgOption : TDbType extends 'mysql' ? MysqlOption : SqliteOption;
+  option: TDbType extends 'pg' ? PgOption : TDbType extends 'mysql' ? MysqlOption : SqliteOption;
 };
 
 export function generateDbString<TDbType extends 'pg' | 'mysql' | 'sqlite'>({
   dbType,
-  options,
+  option,
 }: GenerateDbString<TDbType>) {
   if (dbType === 'pg') {
-    const { user, password, host, port, database, schema } = options as PgOption;
-    return `postgresql://${user}:${password}@${host}:${port}/${database}${
-      schema ?? `?schema=${schema}`
-    }`;
+    const { user, password, host, port, database, schema } = option as PgOption;
+    const schemaString = schema ? `?schema=${schema}` : '';
+    return `postgresql://${user}:${password}@${host}:${port}/${database}${schemaString}`;
   }
 
   if (dbType === 'mysql') {
-    const { user, password, host, port, database } = options as MysqlOption;
+    const { user, password, host, port, database } = option as MysqlOption;
     return `mysql://${user}:${password}@${host}:${port}/${database}`;
   }
 
   if (dbType === 'sqlite') {
-    const { database, url } = options as SqliteOption;
+    const { database, url } = option as SqliteOption;
     const databasePath = join(__dirname, '../../../databases/sqlite');
 
     if (url) return url;

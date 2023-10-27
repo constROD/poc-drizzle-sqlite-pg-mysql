@@ -1,9 +1,9 @@
 import { sql } from 'drizzle-orm';
+import { batchInsertFakeUsers } from '~/core/users/utils/batch-insert-fake-users';
 import { mysqlClient, pgClient, sqliteClient } from '~/db/client';
 import { usersTable as mysqlUsersTable } from '~/db/mysql/schema';
 import { usersTable as pgUsersTable } from '~/db/pg/schema';
 import { usersTable as sqliteUsersTable } from '~/db/sqlite/schema';
-import { batchInsertFakeUsers } from '~/services/users/utils/batch-insert-fake-users';
 
 const sqliteDbClient = sqliteClient();
 const pgDbClient = pgClient();

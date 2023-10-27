@@ -8,10 +8,10 @@ import { generateDbString } from '~/db/utils/generate-db-string';
 import { envConfig } from '~/env';
 
 export const DEFAULT_DB_STRING = {
-  sqlite: generateDbString({ dbType: 'sqlite', options: { database: envConfig.DB_NAME } }),
+  sqlite: generateDbString({ dbType: 'sqlite', option: { database: envConfig.DB_NAME } }),
   pg: generateDbString({
     dbType: 'pg',
-    options: {
+    option: {
       user: envConfig.DB_USER,
       password: envConfig.DB_PASSWORD,
       host: envConfig.DB_HOST,
@@ -21,7 +21,7 @@ export const DEFAULT_DB_STRING = {
   }),
   mysql: generateDbString({
     dbType: 'mysql',
-    options: {
+    option: {
       user: envConfig.DB_USER,
       password: envConfig.DB_PASSWORD,
       host: envConfig.DB_HOST,
