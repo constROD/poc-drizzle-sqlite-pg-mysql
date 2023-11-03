@@ -1,9 +1,93 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "73d1f08d-46be-476c-b796-f8ee8f58787b",
+  "id": "3ccb1c28-3d34-4f67-8063-77d559e13d6a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "posts": {
+      "name": "posts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content": {
+          "name": "content",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (6) with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "NOW()"
+        }
+      },
+      "indexes": {
+        "posts_user_id_idx": {
+          "name": "posts_user_id_idx",
+          "columns": [
+            "user_id"
+          ],
+          "isUnique": false
+        },
+        "posts_title_idx": {
+          "name": "posts_title_idx",
+          "columns": [
+            "title"
+          ],
+          "isUnique": false
+        },
+        "posts_content_idx": {
+          "name": "posts_content_idx",
+          "columns": [
+            "content"
+          ],
+          "isUnique": false
+        },
+        "posts_created_at_idx": {
+          "name": "posts_created_at_idx",
+          "columns": [
+            "created_at"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "posts_user_id_users_serial_fk": {
+          "name": "posts_user_id_users_serial_fk",
+          "tableFrom": "posts",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "serial"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "users": {
       "name": "users",
       "schema": "",
@@ -37,33 +121,33 @@
           "type": "timestamp (6) with time zone",
           "primaryKey": false,
           "notNull": false,
-          "default": "now()"
+          "default": "NOW()"
         }
       },
       "indexes": {
-        "first_name_idx": {
-          "name": "first_name_idx",
+        "users_first_name_idx": {
+          "name": "users_first_name_idx",
           "columns": [
             "first_name"
           ],
           "isUnique": false
         },
-        "last_name_idx": {
-          "name": "last_name_idx",
+        "users_last_name_idx": {
+          "name": "users_last_name_idx",
           "columns": [
             "last_name"
           ],
           "isUnique": false
         },
-        "email_idx": {
-          "name": "email_idx",
+        "users_email_idx": {
+          "name": "users_email_idx",
           "columns": [
             "email"
           ],
           "isUnique": false
         },
-        "created_at_idx": {
-          "name": "created_at_idx",
+        "users_created_at_idx": {
+          "name": "users_created_at_idx",
           "columns": [
             "created_at"
           ],

@@ -47,9 +47,3 @@ export function mysqlClient(dbString: string = DEFAULT_DB_STRING.mysql) {
   const connection = mysql.createPool(dbString);
   return mysqlDrizzle(connection);
 }
-
-export type SqliteClient = ReturnType<typeof sqliteClient>;
-export type PgClient = ReturnType<typeof pgClient>;
-export type MysqlClient = ReturnType<typeof mysqlClient>;
-
-export type DatabaseClient = SqliteClient | PgClient | MysqlClient;

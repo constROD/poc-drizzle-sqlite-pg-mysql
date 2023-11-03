@@ -32,7 +32,8 @@
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "pnpm lint --fix",
     "lint:types": "tsc",
-    "lint:spell": "git diff --cached --name-only | npx cspell --no-summary --no-progress --no-must-find-files --file-list stdin"
+    "lint:spell": "git diff --cached --name-only | npx cspell --no-summary --no-progress --no-must-find-files --file-list stdin",
+    "lint:all": "pnpm lint:types && pnpm lint && pnpm lint:spell"
   },
   "keywords": [],
   "author": "",

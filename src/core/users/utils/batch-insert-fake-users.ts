@@ -1,7 +1,4 @@
-import { mysqlClient, pgClient, sqliteClient } from '~/db/client';
-import { usersTable as mysqlUsersTable } from '~/db/mysql/schema';
-import { usersTable as pgUsersTable } from '~/db/pg/schema';
-import { usersTable as sqliteUsersTable } from '~/db/sqlite/schema';
+import { mysqlUserService, pgUserService, sqliteUserService } from '../user-service';
 import { generateFakeUsers } from './generate-fake-users';
 
 export type BatchInsertFakeUsersOptions = {
@@ -16,20 +13,17 @@ export async function batchInsertFakeUsers({
   batchSize,
 }: BatchInsertFakeUsersOptions) {
   const totalBatches = Math.ceil(count / batchSize);
-  const sqliteDbClient = sqliteClient();
-  const pgDbClient = pgClient();
-  const mysqlDbClient = mysqlClient();
 
   for (let i = 0; i < totalBatches; i++) {
     const users = generateFakeUsers(batchSize);
 
-    const insertQuery = {
-      sqlite: sqliteDbClient.insert(sqliteUsersTable).values(users),
-      pg: pgDbClient.insert(pgUsersTable).values(users),
-      mysql: mysqlDbClient.insert(mysqlUsersTable).values(users),
+    const insertStrategy = {
+      sqlite: sqliteUserService.insertMany({ values: users }),
+      pg: pgUserService.insertMany({ values: users }),
+      mysql: mysqlUserService.insertMany({ values: users }),
     }[dbType];
 
-    await insertQuery;
+    await insertStrategy;
 
     const databaseName = {
       sqlite: 'SQLite',

@@ -9,7 +9,7 @@ export default {
   dbCredentials: {
     connectionString: generateDbString({
       dbType: 'pg',
-      options: {
+      option: {
         user: envConfig.DB_USER,
         password: envConfig.DB_PASSWORD,
         host: envConfig.DB_HOST,
