@@ -41,7 +41,7 @@ export class PgService<TTable extends PgTable> {
     return records;
   }
 
-  async delete({ id }: { id: number }) {
+  async deleteById({ id }: { id: number }) {
     const records = await this.dbClient.delete(this.table).where(eq(this.table.id, id)).returning();
     return records;
   }

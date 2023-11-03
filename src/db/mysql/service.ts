@@ -37,7 +37,7 @@ export class MysqlService<TTable extends MysqlTable> {
     return records;
   }
 
-  async delete({ id }: { id: number }) {
+  async deleteById({ id }: { id: number }) {
     const records = await this.dbClient.delete(this.table).where(eq(this.table.id, id));
     return records;
   }
