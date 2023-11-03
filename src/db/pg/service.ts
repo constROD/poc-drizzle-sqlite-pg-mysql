@@ -32,7 +32,7 @@ export class PgService<TTable extends PgTable> {
     return records;
   }
 
-  async update({ id, values }: { id: number; values: PgUpdateSetSource<TTable> }) {
+  async updateById({ id, values }: { id: number; values: PgUpdateSetSource<TTable> }) {
     const records = await this.dbClient
       .update(this.table)
       .set(values)

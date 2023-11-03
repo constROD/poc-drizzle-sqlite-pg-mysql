@@ -32,7 +32,7 @@ export class MysqlService<TTable extends MysqlTable> {
     return records;
   }
 
-  async update({ id, values }: { id: number; values: MySqlUpdateSetSource<TTable> }) {
+  async updateById({ id, values }: { id: number; values: MySqlUpdateSetSource<TTable> }) {
     const records = await this.dbClient.update(this.table).set(values).where(eq(this.table.id, id));
     return records;
   }

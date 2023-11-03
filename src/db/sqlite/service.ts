@@ -32,7 +32,7 @@ export class SqliteService<TTable extends SqliteTable> {
     return records;
   }
 
-  async update({ id, values }: { id: number; values: SQLiteUpdateSetSource<TTable> }) {
+  async updateById({ id, values }: { id: number; values: SQLiteUpdateSetSource<TTable> }) {
     const records = await this.dbClient.update(this.table).set(values).where(eq(this.table.id, id));
     return records;
   }
