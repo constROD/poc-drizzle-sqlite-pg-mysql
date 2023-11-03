@@ -1,5 +1,5 @@
-import { type mysqlClient, type pgClient, type sqliteClient } from './client';
+import { type createMysqlClient, type createPgClient, type createSqliteClient } from './client';
 
-export type SqliteClient = ReturnType<typeof sqliteClient>;
-export type PgClient = ReturnType<typeof pgClient>;
-export type MysqlClient = ReturnType<typeof mysqlClient>;
+export type SqliteClient = ReturnType<typeof createSqliteClient>;
+export type PgClient = ReturnType<typeof createPgClient>;
+export type MysqlClient = ReturnType<typeof createMysqlClient>;

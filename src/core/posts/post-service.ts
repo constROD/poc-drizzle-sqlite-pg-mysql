@@ -1,4 +1,4 @@
-import { mysqlClient, pgClient, sqliteClient } from '~/db/client';
+import { createMysqlClient, createPgClient, createSqliteClient } from '~/db/client';
 import { postsTable as mysqlPostsTable } from '~/db/mysql/schema';
 import { MysqlService } from '~/db/mysql/service';
 import { postsTable as pgPostsTable } from '~/db/pg/schema';
@@ -16,7 +16,7 @@ export class SqlitePostService extends SqliteService<typeof sqlitePostsTable> {
   }
 }
 
-export const sqlitePostService = new SqlitePostService({ dbClient: sqliteClient() });
+export const sqlitePostService = new SqlitePostService({ dbClient: createSqliteClient() });
 
 export class PgPostService extends PgService<typeof pgPostsTable> {
   constructor({ dbClient }: { dbClient: PgClient }) {
@@ -27,7 +27,7 @@ export class PgPostService extends PgService<typeof pgPostsTable> {
   }
 }
 
-export const pgPostService = new PgPostService({ dbClient: pgClient() });
+export const pgPostService = new PgPostService({ dbClient: createPgClient() });
 
 export class MysqlPostService extends MysqlService<typeof mysqlPostsTable> {
   constructor({ dbClient }: { dbClient: MysqlClient }) {
@@ -38,4 +38,4 @@ export class MysqlPostService extends MysqlService<typeof mysqlPostsTable> {
   }
 }
 
-export const mysqlPostService = new MysqlPostService({ dbClient: mysqlClient() });
+export const mysqlPostService = new MysqlPostService({ dbClient: createMysqlClient() });

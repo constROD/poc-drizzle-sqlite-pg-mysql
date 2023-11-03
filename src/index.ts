@@ -1,21 +1,21 @@
 import { sql } from 'drizzle-orm';
-import { mysqlClient, pgClient, sqliteClient } from '~/db/client';
+import { createMysqlClient, createPgClient, createSqliteClient } from '~/db/client';
 import { usersTable as mysqlUsersTable } from '~/db/mysql/schema';
 import { usersTable as pgUsersTable } from '~/db/pg/schema';
 import { usersTable as sqliteUsersTable } from '~/db/sqlite/schema';
 
-const sqliteDbClient = sqliteClient();
-const pgDbClient = pgClient();
-const mysqlDbClient = mysqlClient();
+const sqliteClient = createSqliteClient();
+const pgClient = createPgClient();
+const mysqlClient = createMysqlClient();
 
 async function run() {
-  const sqliteRecords = await sqliteDbClient
+  const sqliteRecords = await sqliteClient
     .select({ count: sql`count(*)`.mapWith(Number) })
     .from(sqliteUsersTable);
-  const pgRecords = await pgDbClient
+  const pgRecords = await pgClient
     .select({ count: sql`count(${pgUsersTable.id})`.mapWith(Number) })
     .from(pgUsersTable);
-  const mysqlRecords = await mysqlDbClient
+  const mysqlRecords = await mysqlClient
     .select({ count: sql`count(*)`.mapWith(Number) })
     .from(mysqlUsersTable);
 

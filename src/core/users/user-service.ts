@@ -1,4 +1,4 @@
-import { mysqlClient, pgClient, sqliteClient } from '~/db/client';
+import { createMysqlClient, createPgClient, createSqliteClient } from '~/db/client';
 import { usersTable as mysqlUsersTable } from '~/db/mysql/schema';
 import { MysqlService } from '~/db/mysql/service';
 import { usersTable as pgUsersTable } from '~/db/pg/schema';
@@ -16,7 +16,7 @@ export class SqliteUserService extends SqliteService<typeof sqliteUsersTable> {
   }
 }
 
-export const sqliteUserService = new SqliteUserService({ dbClient: sqliteClient() });
+export const sqliteUserService = new SqliteUserService({ dbClient: createSqliteClient() });
 
 export class PgUserService extends PgService<typeof pgUsersTable> {
   constructor({ dbClient }: { dbClient: PgClient }) {
@@ -27,7 +27,7 @@ export class PgUserService extends PgService<typeof pgUsersTable> {
   }
 }
 
-export const pgUserService = new PgUserService({ dbClient: pgClient() });
+export const pgUserService = new PgUserService({ dbClient: createPgClient() });
 
 export class MysqlUserService extends MysqlService<typeof mysqlUsersTable> {
   constructor({ dbClient }: { dbClient: MysqlClient }) {
@@ -38,4 +38,4 @@ export class MysqlUserService extends MysqlService<typeof mysqlUsersTable> {
   }
 }
 
-export const mysqlUserService = new MysqlUserService({ dbClient: mysqlClient() });
+export const mysqlUserService = new MysqlUserService({ dbClient: createMysqlClient() });

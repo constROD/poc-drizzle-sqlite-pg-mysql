@@ -31,19 +31,19 @@ export const DEFAULT_DB_STRING = {
   }),
 };
 
-export function sqliteClient(dbString: string = DEFAULT_DB_STRING.sqlite) {
+export function createSqliteClient(dbString: string = DEFAULT_DB_STRING.sqlite) {
   const connection = new Database(dbString);
   return sqliteDrizzle(connection);
 }
 
-export function pgClient(dbString: string = DEFAULT_DB_STRING.pg) {
+export function createPgClient(dbString: string = DEFAULT_DB_STRING.pg) {
   const connection = new Pool({
     connectionString: dbString,
   });
   return pgDrizzle(connection);
 }
 
-export function mysqlClient(dbString: string = DEFAULT_DB_STRING.mysql) {
+export function createMysqlClient(dbString: string = DEFAULT_DB_STRING.mysql) {
   const connection = mysql.createPool(dbString);
   return mysqlDrizzle(connection);
 }

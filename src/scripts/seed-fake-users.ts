@@ -1,13 +1,13 @@
 import { sql } from 'drizzle-orm';
 import { batchInsertFakeUsers } from '~/core/users/utils/batch-insert-fake-users';
-import { mysqlClient, pgClient, sqliteClient } from '~/db/client';
+import { createMysqlClient, createPgClient, createSqliteClient } from '~/db/client';
 import { usersTable as mysqlUsersTable } from '~/db/mysql/schema';
 import { usersTable as pgUsersTable } from '~/db/pg/schema';
 import { usersTable as sqliteUsersTable } from '~/db/sqlite/schema';
 
-const sqliteDbClient = sqliteClient();
-const pgDbClient = pgClient();
-const mysqlDbClient = mysqlClient();
+const sqliteClient = createSqliteClient();
+const pgClient = createPgClient();
+const mysqlClient = createMysqlClient();
 
 async function seedFakeUsers({
   dbType,
@@ -21,15 +21,15 @@ async function seedFakeUsers({
   console.log('Cleaning up...');
 
   if (dbType === 'sqlite') {
-    await sqliteDbClient.delete(sqliteUsersTable);
+    await sqliteClient.delete(sqliteUsersTable);
   }
 
   if (dbType === 'pg') {
-    await pgDbClient.execute(sql`TRUNCATE TABLE ${pgUsersTable} RESTART IDENTITY`);
+    await pgClient.execute(sql`TRUNCATE TABLE ${pgUsersTable} RESTART IDENTITY`);
   }
 
   if (dbType === 'mysql') {
-    await mysqlDbClient.execute(sql`TRUNCATE TABLE ${mysqlUsersTable}`);
+    await mysqlClient.execute(sql`TRUNCATE TABLE ${mysqlUsersTable}`);
   }
 
   console.log(
