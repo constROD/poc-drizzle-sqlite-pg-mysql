@@ -12,6 +12,7 @@ databases/
 
 *-lock.json
 *.lock
+*-lock.yaml
 
 .eslintrc.js
 .prettierrc.js

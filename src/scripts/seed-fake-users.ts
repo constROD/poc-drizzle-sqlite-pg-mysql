@@ -12,7 +12,7 @@ const mysqlClient = createMysqlClient();
 async function seedFakeUsers({
   dbType,
   count,
-  batchSize,
+  batchSize
 }: {
   dbType: 'sqlite' | 'pg' | 'mysql';
   count: number;
@@ -42,7 +42,7 @@ async function seedFakeUsers({
   await batchInsertFakeUsers({
     dbType,
     count,
-    batchSize,
+    batchSize
   });
   const end = performance.now();
   console.log(`Execution Time: ${end - start} ms`);
@@ -51,7 +51,7 @@ async function seedFakeUsers({
 void seedFakeUsers({
   dbType: 'sqlite',
   count: 1_000_000,
-  batchSize: 10_000,
+  batchSize: 10_000
 });
 
 // void seedFakeUsers({

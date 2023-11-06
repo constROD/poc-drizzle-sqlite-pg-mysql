@@ -7,10 +7,10 @@ export default {
   out: './drizzle/migrations/sqlite',
   driver: 'better-sqlite',
   dbCredentials: {
-    url: generateDbString({ dbType: 'sqlite', option: { database: envConfig.DB_NAME } }),
+    url: generateDbString({ dbType: 'sqlite', option: { database: envConfig.DB_NAME } })
   },
   strict: true,
 
   /* For debugging purposes */
-  verbose: true,
+  verbose: true
 } satisfies Config;

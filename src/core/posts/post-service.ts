@@ -11,7 +11,7 @@ export class SqlitePostService extends SqliteService<typeof sqlitePostsTable> {
   constructor({ dbClient }: { dbClient: SqliteClient }) {
     super({
       dbClient,
-      table: sqlitePostsTable,
+      table: sqlitePostsTable
     });
   }
 }
@@ -22,7 +22,7 @@ export class PgPostService extends PgService<typeof pgPostsTable> {
   constructor({ dbClient }: { dbClient: PgClient }) {
     super({
       dbClient,
-      table: pgPostsTable,
+      table: pgPostsTable
     });
   }
 }
@@ -33,7 +33,7 @@ export class MysqlPostService extends MysqlService<typeof mysqlPostsTable> {
   constructor({ dbClient }: { dbClient: MysqlClient }) {
     super({
       dbClient,
-      table: mysqlPostsTable,
+      table: mysqlPostsTable
     });
   }
 }

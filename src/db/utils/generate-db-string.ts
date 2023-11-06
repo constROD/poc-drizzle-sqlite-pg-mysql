@@ -26,7 +26,7 @@ export type GenerateDbString<TDbType extends 'pg' | 'mysql' | 'sqlite'> = {
 
 export function generateDbString<TDbType extends 'pg' | 'mysql' | 'sqlite'>({
   dbType,
-  option,
+  option
 }: GenerateDbString<TDbType>) {
   if (dbType === 'pg') {
     const { user, password, host, port, database, schema } = option as PgOption;

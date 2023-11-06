@@ -14,12 +14,12 @@ export default {
         password: envConfig.DB_PASSWORD,
         host: envConfig.DB_HOST,
         port: envConfig.DB_MYSQL_PORT,
-        database: envConfig.DB_NAME,
-      },
-    }),
+        database: envConfig.DB_NAME
+      }
+    })
   },
   strict: true,
 
   /* For debugging purposes */
-  verbose: true,
+  verbose: true
 } satisfies Config;

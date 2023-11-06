@@ -1,7 +1,7 @@
 export const STAGES = {
   DEV: 'dev',
   PROD: 'prod',
-  TEST: 'test',
+  TEST: 'test'
 } as const;
 
 export type Stage = (typeof STAGES)[keyof typeof STAGES];

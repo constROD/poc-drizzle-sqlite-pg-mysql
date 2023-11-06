@@ -10,7 +10,7 @@ export type BatchInsertFakeUsersOptions = {
 export async function batchInsertFakeUsers({
   dbType,
   count,
-  batchSize,
+  batchSize
 }: BatchInsertFakeUsersOptions) {
   const totalBatches = Math.ceil(count / batchSize);
 
@@ -20,7 +20,7 @@ export async function batchInsertFakeUsers({
     const insertStrategy = {
       sqlite: sqliteUserService.insertMany({ values: users }),
       pg: pgUserService.insertMany({ values: users }),
-      mysql: mysqlUserService.insertMany({ values: users }),
+      mysql: mysqlUserService.insertMany({ values: users })
     }[dbType];
 
     await insertStrategy;
@@ -28,7 +28,7 @@ export async function batchInsertFakeUsers({
     const databaseName = {
       sqlite: 'SQLite',
       pg: 'PostgreSQL',
-      mysql: 'MySQL',
+      mysql: 'MySQL'
     }[dbType];
 
     console.log(

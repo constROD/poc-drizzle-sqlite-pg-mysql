@@ -13,3 +13,4 @@ databases/
 
 *-lock.json
 *.lock
+*-lock.yaml

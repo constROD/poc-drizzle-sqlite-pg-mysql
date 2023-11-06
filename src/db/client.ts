@@ -16,8 +16,8 @@ export const DEFAULT_DB_STRING = {
       password: envConfig.DB_PASSWORD,
       host: envConfig.DB_HOST,
       port: envConfig.DB_PG_PORT,
-      database: envConfig.DB_NAME,
-    },
+      database: envConfig.DB_NAME
+    }
   }),
   mysql: generateDbString({
     dbType: 'mysql',
@@ -26,9 +26,9 @@ export const DEFAULT_DB_STRING = {
       password: envConfig.DB_PASSWORD,
       host: envConfig.DB_HOST,
       port: envConfig.DB_MYSQL_PORT,
-      database: envConfig.DB_NAME,
-    },
-  }),
+      database: envConfig.DB_NAME
+    }
+  })
 };
 
 export function createSqliteClient(dbString: string = DEFAULT_DB_STRING.sqlite) {
@@ -38,7 +38,7 @@ export function createSqliteClient(dbString: string = DEFAULT_DB_STRING.sqlite) 
 
 export function createPgClient(dbString: string = DEFAULT_DB_STRING.pg) {
   const connection = new Pool({
-    connectionString: dbString,
+    connectionString: dbString
   });
   return pgDrizzle(connection);
 }

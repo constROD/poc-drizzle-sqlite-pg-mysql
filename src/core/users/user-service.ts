@@ -11,7 +11,7 @@ export class SqliteUserService extends SqliteService<typeof sqliteUsersTable> {
   constructor({ dbClient }: { dbClient: SqliteClient }) {
     super({
       dbClient,
-      table: sqliteUsersTable,
+      table: sqliteUsersTable
     });
   }
 }
@@ -22,7 +22,7 @@ export class PgUserService extends PgService<typeof pgUsersTable> {
   constructor({ dbClient }: { dbClient: PgClient }) {
     super({
       dbClient,
-      table: pgUsersTable,
+      table: pgUsersTable
     });
   }
 }
@@ -33,7 +33,7 @@ export class MysqlUserService extends MysqlService<typeof mysqlUsersTable> {
   constructor({ dbClient }: { dbClient: MysqlClient }) {
     super({
       dbClient,
-      table: mysqlUsersTable,
+      table: mysqlUsersTable
     });
   }
 }
