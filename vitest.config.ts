@@ -5,11 +5,11 @@ export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     globals: true,
-    include: ['**/__tests__/*.test.ts'],
+    include: ['**/*.test.ts'],
     exclude: ['node_modules/**'],
     coverage: {
       all: true,
-      reporter: ['lcov', 'text-summary'],
-    },
-  },
+      reporter: ['lcov', 'text-summary']
+    }
+  }
 });

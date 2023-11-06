@@ -31,13 +31,11 @@ pnpm install
 ```
 
 4. Create `.env` file and use `.env.example` as a template
-   
 5. Start development server
 
 ```
 pnpm dev
 ```
-
 
 ## Project Structure
 
@@ -91,10 +89,8 @@ To start the PostgreSQL and MySQL databases, run:
 pnpm db:start
 ```
 
-
 To stop them, run:
 
 ```
 pnpm db:stop
 ```
-

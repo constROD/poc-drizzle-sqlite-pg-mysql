@@ -28,12 +28,12 @@
     "mysql:check": "npx drizzle-kit check:mysql --config=./drizzle.mysql.config.ts",
     "mysql:up": "npx drizzle-kit up:mysql --config=./drizzle.mysql.config.ts",
     "mysql:studio": "npx drizzle-kit studio --config=./drizzle.mysql.config.ts",
-    "format": "prettier --write ./src/**/*.ts{,x}",
-    "lint": "eslint ./src --ext .ts",
-    "lint:fix": "pnpm lint --fix",
-    "lint:types": "tsc",
-    "lint:spell": "git diff --cached --name-only | npx cspell --no-summary --no-progress --no-must-find-files --file-list stdin",
-    "lint:all": "pnpm lint:types && pnpm lint && pnpm lint:spell"
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .ts",
+    "check:types": "tsc",
+    "check:spell": "git diff --cached --name-only | npx cspell --no-summary --no-progress --no-must-find-files --file-list stdin",
+    "check:all": "pnpm lint && pnpm check:types && pnpm check:spell",
+    "lint:fix": "pnpm lint --fix"
   },
   "keywords": [],
   "author": "",
