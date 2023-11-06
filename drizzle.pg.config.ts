@@ -10,11 +10,11 @@ export default {
     connectionString: generateDbString({
       dbType: 'pg',
       option: {
-        user: envConfig.DB_USER,
-        password: envConfig.DB_PASSWORD,
-        host: envConfig.DB_HOST,
-        port: envConfig.DB_PG_PORT,
-        database: envConfig.DB_NAME
+        user: envConfig.PG_DB_HOST,
+        password: envConfig.PG_DB_HOST,
+        host: envConfig.PG_DB_HOST,
+        port: envConfig.PG_DB_PORT,
+        database: envConfig.PG_DB_NAME
       }
     })
   },

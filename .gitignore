@@ -12,3 +12,6 @@ databases/
 
 *-lock.json
 *.lock
+
+*-error.log
+*-debug.log

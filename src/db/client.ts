@@ -15,7 +15,7 @@ export const DEFAULT_DB_STRING = {
       user: envConfig.DB_USER,
       password: envConfig.DB_PASSWORD,
       host: envConfig.DB_HOST,
-      port: envConfig.DB_PG_PORT,
+      port: envConfig.PG_DB_PORT,
       database: envConfig.DB_NAME
     }
   }),
@@ -25,7 +25,7 @@ export const DEFAULT_DB_STRING = {
       user: envConfig.DB_USER,
       password: envConfig.DB_PASSWORD,
       host: envConfig.DB_HOST,
-      port: envConfig.DB_MYSQL_PORT,
+      port: envConfig.MYSQL_DB_PORT,
       database: envConfig.DB_NAME
     }
   })

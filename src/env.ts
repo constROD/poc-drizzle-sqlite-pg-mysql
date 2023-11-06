@@ -11,20 +11,30 @@ initEnvConfig();
 
 const envSchema = z.object({
   STAGE: z.enum([STAGES.DEV, STAGES.PROD, STAGES.TEST]).default(STAGES.DEV),
-  DB_NAME: z.string(),
-  DB_USER: z.string(),
-  DB_PASSWORD: z.string(),
-  DB_HOST: z.string(),
-  DB_PG_PORT: z.coerce.number(),
-  DB_MYSQL_PORT: z.coerce.number()
+  SQLITE_DB_NAME: z.string(),
+  PG_DB_NAME: z.string(),
+  PG_DB_USER: z.string(),
+  PG_DB_PASSWORD: z.string(),
+  PG_DB_HOST: z.string(),
+  PG_DB_PORT: z.coerce.number(),
+  MYSQL_DB_NAME: z.string(),
+  MYSQL_DB_USER: z.string(),
+  MYSQL_DB_PASSWORD: z.string(),
+  MYSQL_DB_HOST: z.string(),
+  MYSQL_DB_PORT: z.coerce.number()
 });
 
 export const envConfig = envSchema.parse({
   STAGE: process.env.STAGE,
-  DB_NAME: process.env.DB_NAME,
-  DB_USER: process.env.DB_USER,
-  DB_PASSWORD: process.env.DB_PASSWORD,
-  DB_HOST: process.env.DB_HOST,
-  DB_PG_PORT: process.env.DB_PG_PORT,
-  DB_MYSQL_PORT: process.env.DB_MYSQL_PORT
+  SQLITE_DB_NAME: process.env.SQLITE_DB_NAME,
+  PG_DB_NAME: process.env.PG_DB_NAME,
+  PG_DB_USER: process.env.PG_DB_USER,
+  PG_DB_PASSWORD: process.env.PG_DB_PASSWORD,
+  PG_DB_HOST: process.env.PG_DB_HOST,
+  PG_DB_PORT: process.env.PG_DB_PORT,
+  MYSQL_DB_NAME: process.env.MYSQL_DB_NAME,
+  MYSQL_DB_USER: process.env.MYSQL_DB_USER,
+  MYSQL_DB_PASSWORD: process.env.MYSQL_DB_PASSWORD,
+  MYSQL_DB_HOST: process.env.MYSQL_DB_HOST,
+  MYSQL_DB_PORT: process.env.MYSQL_DB_PORT
 });

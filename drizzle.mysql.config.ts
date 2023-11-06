@@ -10,11 +10,11 @@ export default {
     connectionString: generateDbString({
       dbType: 'mysql',
       option: {
-        user: envConfig.DB_USER,
-        password: envConfig.DB_PASSWORD,
-        host: envConfig.DB_HOST,
-        port: envConfig.DB_MYSQL_PORT,
-        database: envConfig.DB_NAME
+        user: envConfig.MYSQL_DB_USER,
+        password: envConfig.MYSQL_DB_PASSWORD,
+        host: envConfig.MYSQL_DB_HOST,
+        port: envConfig.MYSQL_DB_PORT,
+        database: envConfig.MYSQL_DB_NAME
       }
     })
   },

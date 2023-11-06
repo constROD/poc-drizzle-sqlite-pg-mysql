@@ -7,22 +7,22 @@ services:
   pg:
     image: postgres:15.3-alpine
     ports:
-      - '${DB_PG_PORT}:5432'
+      - '${PG_DB_PORT}:5432'
     volumes:
       - ./databases/pg/data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${PG_DB_USER}
+      POSTGRES_PASSWORD: ${PG_DB_PASSWORD}
 
   pgadmin:
     image: dpage/pgadmin4:6
     ports:
-      - '4001:5050'
+      - '${PG_ADMIN_PORT}:5050'
     volumes:
       - ./databases/pg/pgadmin:/var/lib/pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: '${DB_USER}@localhost.com'
-      PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: ${PG_ADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PG_ADMIN_PASSWORD}
       PGADMIN_LISTEN_PORT: 5050
     depends_on:
       - pg
@@ -32,26 +32,26 @@ services:
     image: mysql:8.0.32
     command: --default-authentication-plugin=mysql_native_password
     ports:
-      - '${DB_MYSQL_PORT}:3306'
+      - '${MYSQL_DB_PORT}:3306'
     volumes:
       - ./databases/mysql/data:/var/lib/mysql
       - ./setup/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_USER: '${DB_USER}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_DATABASE: '${DB_NAME}'
+      MYSQL_ROOT_PASSWORD: '${MYSQL_DB_PASSWORD}'
+      MYSQL_USER: '${MYSQL_DB_USER}'
+      MYSQL_PASSWORD: '${MYSQL_DB_PASSWORD}'
+      MYSQL_DATABASE: '${MYSQL_DB_NAME}'
     restart: on-failure
 
   phpmyadmin:
     image: phpmyadmin:5
     ports:
-      - '4002:80'
+      - '${PHPMYADMIN_PORT}:80'
     environment:
       PMA_ARBITRARY: 1
       PMA_HOST: mysql
-      PMA_USER: ${DB_USER}
-      PMA_PASSWORD: ${DB_PASSWORD}
+      PMA_USER: ${MYSQL_DB_USER}
+      PMA_PASSWORD: ${MYSQL_DB_PASSWORD}
       UPLOAD_LIMIT: 20M
       PHP_UPLOAD_MAX_FILESIZE: 20M
       PHP_POST_MAX_SIZE: 20M
@@ -62,4 +62,4 @@ services:
   adminer:
     image: adminer:4.8.1
     ports:
-      - '4003:8080'
+      - '${ADMINER_PORT}:8080'
