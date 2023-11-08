@@ -17,12 +17,12 @@ services:
   pgadmin:
     image: dpage/pgadmin4:6
     ports:
-      - '${PG_ADMIN_PORT}:5050'
+      - '${PGADMIN_PORT}:5050'
     volumes:
       - ./databases/pg/pgadmin:/var/lib/pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PG_ADMIN_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PG_ADMIN_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
       PGADMIN_LISTEN_PORT: 5050
     depends_on:
       - pg
