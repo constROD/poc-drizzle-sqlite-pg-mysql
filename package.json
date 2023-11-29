@@ -32,7 +32,7 @@
     "lint": "eslint . --ext .ts",
     "check:types": "tsc",
     "check:spell": "git diff --cached --name-only | npx cspell --no-summary --no-progress --no-must-find-files --file-list stdin",
-    "check:all": "pnpm lint && pnpm check:types && pnpm check:spell",
+    "check:all": "npx concurrently \"pnpm lint\" \"pnpm check:types\" \"pnpm check:spell\"",
     "lint:fix": "pnpm lint --fix"
   },
   "keywords": [],
