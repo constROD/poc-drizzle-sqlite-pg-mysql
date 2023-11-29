@@ -7,7 +7,7 @@ export default {
   out: './drizzle/migrations/mysql',
   driver: 'mysql2',
   dbCredentials: {
-    connectionString: generateDbString({
+    uri: generateDbString({
       dbType: 'mysql',
       option: {
         user: envConfig.MYSQL_DB_USER,
