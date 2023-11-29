@@ -1,5 +1,5 @@
 import type { Config } from 'drizzle-kit';
-import { generateDbString } from '~/db/utils/generate-db-string';
+import { makeDbString } from '~/db/utils/make-db-string';
 import { envConfig } from '~/env';
 
 export default {
@@ -7,7 +7,7 @@ export default {
   out: './drizzle/migrations/sqlite',
   driver: 'better-sqlite',
   dbCredentials: {
-    url: generateDbString({ dbType: 'sqlite', option: { database: envConfig.SQLITE_DB_NAME } })
+    url: makeDbString({ dbType: 'sqlite', option: { database: envConfig.SQLITE_DB_NAME } })
   },
   strict: true,
 

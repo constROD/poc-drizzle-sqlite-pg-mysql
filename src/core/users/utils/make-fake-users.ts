@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-export function generateFakeUsers(count: number) {
+export function makeFakeUsers(count: number) {
   const users = [];
   for (let i = 0; i < count; i++) {
     users.push({

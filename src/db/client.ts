@@ -4,12 +4,12 @@ import { drizzle as mysqlDrizzle } from 'drizzle-orm/mysql2';
 import { drizzle as pgDrizzle } from 'drizzle-orm/node-postgres';
 import mysql from 'mysql2/promise';
 import { Pool } from 'pg';
-import { generateDbString } from '~/db/utils/generate-db-string';
+import { makeDbString } from '~/db/utils/make-db-string';
 import { envConfig } from '~/env';
 
 export const DEFAULT_DB_STRING = {
-  sqlite: generateDbString({ dbType: 'sqlite', option: { database: envConfig.PG_DB_NAME } }),
-  pg: generateDbString({
+  sqlite: makeDbString({ dbType: 'sqlite', option: { database: envConfig.PG_DB_NAME } }),
+  pg: makeDbString({
     dbType: 'pg',
     option: {
       user: envConfig.PG_DB_USER,
@@ -19,7 +19,7 @@ export const DEFAULT_DB_STRING = {
       database: envConfig.PG_DB_NAME
     }
   }),
-  mysql: generateDbString({
+  mysql: makeDbString({
     dbType: 'mysql',
     option: {
       user: envConfig.MYSQL_DB_USER,

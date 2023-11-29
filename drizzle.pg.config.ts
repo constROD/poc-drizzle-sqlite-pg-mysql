@@ -1,5 +1,5 @@
 import type { Config } from 'drizzle-kit';
-import { generateDbString } from '~/db/utils/generate-db-string';
+import { makeDbString } from '~/db/utils/make-db-string';
 import { envConfig } from '~/env';
 
 export default {
@@ -7,7 +7,7 @@ export default {
   out: './drizzle/migrations/pg',
   driver: 'pg',
   dbCredentials: {
-    connectionString: generateDbString({
+    connectionString: makeDbString({
       dbType: 'pg',
       option: {
         user: envConfig.PG_DB_HOST,

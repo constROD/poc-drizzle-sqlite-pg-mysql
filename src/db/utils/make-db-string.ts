@@ -19,15 +19,15 @@ type SqliteOption = {
   url?: string;
 };
 
-export type GenerateDbString<TDbType extends 'pg' | 'mysql' | 'sqlite'> = {
+export type MakeDbString<TDbType extends 'pg' | 'mysql' | 'sqlite'> = {
   dbType: TDbType;
   option: TDbType extends 'pg' ? PgOption : TDbType extends 'mysql' ? MysqlOption : SqliteOption;
 };
 
-export function generateDbString<TDbType extends 'pg' | 'mysql' | 'sqlite'>({
+export function makeDbString<TDbType extends 'pg' | 'mysql' | 'sqlite'>({
   dbType,
   option
-}: GenerateDbString<TDbType>) {
+}: MakeDbString<TDbType>) {
   if (dbType === 'pg') {
     const { user, password, host, port, database, schema } = option as PgOption;
     const schemaString = schema ? `?schema=${schema}` : '';

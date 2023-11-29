@@ -1,5 +1,5 @@
 import { mysqlUserService, pgUserService, sqliteUserService } from '../user-service';
-import { generateFakeUsers } from './generate-fake-users';
+import { makeFakeUsers } from './make-fake-users';
 
 export type BatchInsertFakeUsersOptions = {
   count: number;
@@ -15,7 +15,7 @@ export async function batchInsertFakeUsers({
   const totalBatches = Math.ceil(count / batchSize);
 
   for (let i = 0; i < totalBatches; i++) {
-    const users = generateFakeUsers(batchSize);
+    const users = makeFakeUsers(batchSize);
 
     const insertStrategy = {
       sqlite: sqliteUserService.insertMany({ values: users }),
