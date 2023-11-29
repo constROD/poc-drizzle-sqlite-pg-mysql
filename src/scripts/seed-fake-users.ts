@@ -1,4 +1,3 @@
-import { sql } from 'drizzle-orm';
 import { batchInsertFakeUsers } from '~/core/users/utils/batch-insert-fake-users';
 import { createMysqlClient, createPgClient, createSqliteClient } from '~/db/client';
 import { usersTable as mysqlUsersTable } from '~/db/mysql/schema';
@@ -11,11 +10,11 @@ const mysqlClient = createMysqlClient();
 
 async function seedFakeUsers({
   dbType,
-  count,
+  batchCount,
   batchSize
 }: {
   dbType: 'sqlite' | 'pg' | 'mysql';
-  count: number;
+  batchCount: number;
   batchSize: number;
 }) {
   console.log('Cleaning up...');
@@ -25,15 +24,15 @@ async function seedFakeUsers({
   }
 
   if (dbType === 'pg') {
-    await pgClient.execute(sql`TRUNCATE TABLE ${pgUsersTable} RESTART IDENTITY`);
+    await pgClient.delete(pgUsersTable);
   }
 
   if (dbType === 'mysql') {
-    await mysqlClient.execute(sql`TRUNCATE TABLE ${mysqlUsersTable}`);
+    await mysqlClient.delete(mysqlUsersTable);
   }
 
   console.log(
-    `Start seeding ${count.toLocaleString(
+    `Start seeding ${batchCount.toLocaleString(
       'en-US'
     )} records in batches of ${batchSize.toLocaleString('en-US')}`
   );
@@ -41,7 +40,7 @@ async function seedFakeUsers({
   const start = performance.now();
   await batchInsertFakeUsers({
     dbType,
-    count,
+    batchCount,
     batchSize
   });
   const end = performance.now();
@@ -50,18 +49,18 @@ async function seedFakeUsers({
 
 void seedFakeUsers({
   dbType: 'sqlite',
-  count: 1_000_000,
+  batchCount: 1_000_000,
   batchSize: 10_000
 });
 
 // void seedFakeUsers({
 //   dbType: 'pg',
-//   count: 1_000_000,
+//   batchCount: 1_000_000,
 //   batchSize: 10_000,
 // });
 
 // void seedFakeUsers({
 //   dbType: 'mysql',
-//   count: 1_000_000,
+//   batchCount: 1_000_000,
 //   batchSize: 10_000,
 // });

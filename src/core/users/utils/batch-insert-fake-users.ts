@@ -2,17 +2,17 @@ import { mysqlUserService, pgUserService, sqliteUserService } from '../user-serv
 import { makeFakeUsers } from './make-fake-users';
 
 export type BatchInsertFakeUsersOptions = {
-  count: number;
+  batchCount: number;
   batchSize: number;
   dbType: 'pg' | 'mysql' | 'sqlite';
 };
 
 export async function batchInsertFakeUsers({
   dbType,
-  count,
+  batchCount,
   batchSize
 }: BatchInsertFakeUsersOptions) {
-  const totalBatches = Math.ceil(count / batchSize);
+  const totalBatches = Math.ceil(batchCount / batchSize);
 
   for (let i = 0; i < totalBatches; i++) {
     const users = makeFakeUsers(batchSize);
@@ -31,8 +31,6 @@ export async function batchInsertFakeUsers({
       mysql: 'MySQL'
     }[dbType];
 
-    console.log(
-      `${databaseName} | Total records inserted ${(batchSize * (i + 1)).toLocaleString('en-US')}`
-    );
+    console.log(`${databaseName} | Total records inserted ${users.length.toLocaleString('en-US')}`);
   }
 }

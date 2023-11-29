@@ -1,5 +1,6 @@
 import { eq, inArray } from 'drizzle-orm';
 import { type PgInsertValue, type PgUpdateSetSource } from 'drizzle-orm/pg-core';
+import { envConfig } from '~/env';
 import { type PgClient } from '../types';
 import { type PgTable } from './types';
 
@@ -49,5 +50,13 @@ export class PgService<TTable extends PgTable> {
   async deleteMany({ ids }: { ids: number[] }) {
     const records = await this.dbClient.delete(this.table).where(inArray(this.table.id, ids));
     return records;
+  }
+
+  async deleteAll() {
+    if (envConfig.STAGE !== 'test' || envConfig.PG_DB_HOST !== 'localhost') {
+      throw new Error('Delete all records is only allowed in test environment');
+    }
+
+    await this.dbClient.delete(this.table);
   }
 }

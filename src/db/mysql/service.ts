@@ -1,5 +1,6 @@
 import { eq, inArray } from 'drizzle-orm';
 import { type MySqlInsertValue, type MySqlUpdateSetSource } from 'drizzle-orm/mysql-core';
+import { envConfig } from '~/env';
 import { type MysqlClient } from '../types';
 import { type MysqlTable } from './types';
 
@@ -45,5 +46,13 @@ export class MysqlService<TTable extends MysqlTable> {
   async deleteMany({ ids }: { ids: number[] }) {
     const records = await this.dbClient.delete(this.table).where(inArray(this.table.id, ids));
     return records;
+  }
+
+  async deleteAll() {
+    if (envConfig.STAGE !== 'test' || envConfig.MYSQL_DB_HOST !== 'localhost') {
+      throw new Error('Delete all records is only allowed in test environment');
+    }
+
+    await this.dbClient.delete(this.table);
   }
 }

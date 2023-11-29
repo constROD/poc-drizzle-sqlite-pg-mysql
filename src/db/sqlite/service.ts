@@ -1,5 +1,6 @@
 import { eq, inArray } from 'drizzle-orm';
 import { type SQLiteInsertValue, type SQLiteUpdateSetSource } from 'drizzle-orm/sqlite-core';
+import { envConfig } from '~/env';
 import { type SqliteClient } from '../types';
 import { type SqliteTable } from './types';
 
@@ -45,5 +46,13 @@ export class SqliteService<TTable extends SqliteTable> {
   async deleteMany({ ids }: { ids: number[] }) {
     const records = await this.dbClient.delete(this.table).where(inArray(this.table.id, ids));
     return records;
+  }
+
+  async deleteAll() {
+    if (envConfig.STAGE !== 'test' || envConfig.SQLITE_DB_NAME !== 'test') {
+      throw new Error('Delete all records is only allowed in test environment');
+    }
+
+    await this.dbClient.delete(this.table);
   }
 }
